@@ -1,7 +1,7 @@
 # Research
 Jupyter notebook tutorials for the QuantBook Lean system project.
 
-### [Fudamental Factor Analysis](../blob/master/Notebooks/02 Fudamental Factor Analysis.ipynb)
+### [Fudamental Factor Analysis](../blob/master/Notebooks/02%20Fudamental%20Factor%20Analysis.ipynb)
 
 This research applies MorningStar fundamental data to demonstrate how to select the effective factors for long/short strategies. 
 
