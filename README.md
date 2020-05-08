@@ -2,9 +2,9 @@
 
 This repository is a collection of research notebooks and tutorials using the QuantConnect LEAN platform. Research covers a range of topics from tutorial focused demonstrations to topical analysis of modern movements in the financial markets. 
 
-### General QC Research
+### Topical Events
 
- - May 7, 2020 - [S&P500 Hope vs Fear CV2019]()
+ - May 7, 2020 - [S&P500 Hope vs Fear CV2019](https://github.com/QuantConnect/Research/blob/master/Topical/)
 
 ### Idea Streams PodCast
 
