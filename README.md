@@ -21,6 +21,7 @@ This repository is a collection of research notebooks and tutorials using the Qu
  - [Stationary Processes and Z-Scores](https://github.com/QuantConnect/Research/blob/master/Research2Production/05%20Stationary%20Processes%20and%20Z-Scores.ipynb)
  - [Principal Component Analysis](https://github.com/QuantConnect/Research/blob/master/Research2Production/06%20Principal%20Component%20Analysis.ipynb)
  - [Hidden Markov Models](https://github.com/QuantConnect/Research/blob/master/Research2Production/07%20Hidden%20Markov%20Models.ipynb)
+ - [Long Short-Term Memory](https://github.com/QuantConnect/Research/blob/master/Research2Production/08%20Long%20Short-Term%20Memory.ipynb)
 
 ### Analysis Examples  
  - [Fudamental Factor Analysis](https://github.com/QuantConnect/Research/blob/master/Analysis/01%20Fudamental%20Factor%20Analysis.ipynb): This research applies MorningStar fundamental data to demonstrate how to select the effective factors for long/short strategies. 
