@@ -14,9 +14,14 @@ This repository is a collection of research notebooks and tutorials using the Qu
  
 ### Research 2 Production Notebook Series
 
- - 
- -
- -
+ - Mean Reversion
+ - Random Forest Regression
+ - Uncorrelated Assets
+ - Kalman Filters and Pairs Trading
+ - Stationary Processes and Z-Scores
+ - Principal Component Analysis
+ - Hidden Markov Models
+ - Long Short-Term Memory
 
 ### Analysis Examples  
  - [Fudamental Factor Analysis](https://github.com/QuantConnect/Research/blob/master/Analysis/01%20Fudamental%20Factor%20Analysis.ipynb): This research applies MorningStar fundamental data to demonstrate how to select the effective factors for long/short strategies. 
