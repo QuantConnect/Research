@@ -14,9 +14,13 @@ This repository is a collection of research notebooks and tutorials using the Qu
  
 ### Research 2 Production Notebook Series
 
- - 
- -
- -
+ - [Mean Reversion](https://github.com/QuantConnect/Research/blob/master/Research2Production/01%20Mean%20Reversion.ipynb)
+ - [Random Forest Regression](https://github.com/QuantConnect/Research/blob/master/Research2Production/02%20Random%20Forest%20Regression.ipynb)
+ - [Uncorrelated Assets](https://github.com/QuantConnect/Research/blob/master/Research2Production/03%20Uncorrelated%20Assets.ipynb)
+ - [Kalman Filters and Pairs Trading](https://github.com/QuantConnect/Research/blob/master/Research2Production/04%20Kalman%20Filters%20and%20Pairs%20Trading.ipynb)
+ - [Stationary Processes and Z-Scores](https://github.com/QuantConnect/Research/blob/master/Research2Production/05%20Stationary%20Processes%20and%20Z-Scores.ipynb)
+ - [Principal Component Analysis](https://github.com/QuantConnect/Research/blob/master/Research2Production/06%20Principal%20Component%20Analysis.ipynb)
+ - [Hidden Markov Models](https://github.com/QuantConnect/Research/blob/master/Research2Production/07%20Hidden%20Markov%20Models.ipynb)
 
 ### Analysis Examples  
  - [Fudamental Factor Analysis](https://github.com/QuantConnect/Research/blob/master/Analysis/01%20Fudamental%20Factor%20Analysis.ipynb): This research applies MorningStar fundamental data to demonstrate how to select the effective factors for long/short strategies. 
