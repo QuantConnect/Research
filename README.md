@@ -10,7 +10,9 @@ This repository is a collection of research notebooks and tutorials using the Qu
 
 ### Idea Streams PodCast
 
- - May 10, 2020 Episode 3 - [Correlation Analysis Major CV19 Economies]()
+ - May 28, 2020 Episode 5 - [Tail Risk Hedging](https://www.youtube.com/watch?v=dA7VaQvpCGg&t=1s)
+ - May 22, 2020 Episode 4 - [Nowcasting News Announcements of Vaccine Trials](https://www.youtube.com/watch?v=ZmatDMCvKTE&t=686s)
+ - May 10, 2020 Episode 3 - [Correlation Analysis Major CV19 Economies](https://www.youtube.com/watch?v=wflTPzl9YF4)
  - April 28, 2020 Episode 2 - [Unemployment Claims with SKLean](https://www.youtube.com/watch?v=VCf9e0S4rDg)
  - April 20th, 2020 Episode 1 - [Traunch Rebalancing](https://www.youtube.com/watch?v=q1VjM1nHPfE)
  
