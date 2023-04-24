@@ -115,9 +115,6 @@ def __create_square(template, strategy, profile) -> Image:
     # Create a copy of the template to add elements
     copy = template.copy()
 
-    # Add profile picture
-    copy.paste(profile, (550, 225),mask=profile)
-
     # Add texts
     I1 = ImageDraw.Draw(copy)
     name = strategy.get('name')
@@ -127,34 +124,23 @@ def __create_square(template, strategy, profile) -> Image:
     category = category.upper()
 
     width = name_font.getlength(name)
-    if width < 450:
-        I1.text((42,220), name, font=name_font, fill='#313131')
+    if width < 650:
+        I1.text((42,160), name, font=name_font, fill='#313131')
     else:
         parts = name.split(' ')
         for i in reversed(range(len(parts))):
-            if name_font.getlength(' '.join(parts[:i])) <= 450:
+            if name_font.getlength(' '.join(parts[:i])) <= 650:
                 break
-        I1.text((42,220), ' '.join(parts[:i]), font=name_font, fill='#313131')
-        I1.text((42,255), ' '.join(parts[i:]), font=name_font, fill='#313131')
-        
-    width = author_font.getlength(author_name)
-    if width < 200:
-        I1.text((640,265), author_name, font=author_font, fill='#313131')
-    else:
-        parts = author_name.split(' ')
-        for i in reversed(range(len(parts))):
-            if author_font.getlength(' '.join(parts[:i])) <= 200:
-                break
-        if i == 0:
-            while author_font.getlength(author_name) > 200:
-                author_name = author_name[:-1]
-            I1.text((640,265), f'{author_name}...', font=author_font, fill='#313131')
-        else:
-            I1.text((640,265), ' '.join(parts[:i]), font=author_font, fill='#313131')
-            I1.text((640,290), ' '.join(parts[i:]), font=author_font, fill='#313131')
+        I1.text((42,160), ' '.join(parts[:i]), font=name_font, fill='#313131')
+        I1.text((42,195), ' '.join(parts[i:]), font=name_font, fill='#313131')
 
-    I1.text((42,300), category, font=category_font,
+    I1.text((42,240), category, font=category_font,
         fill=colors_by_category.get(category, '#313131'))
+
+    # Add profile picture
+    copy.paste(profile, (42, 325),mask=profile)
+
+    I1.text((137, 360), author_name, font=author_font, fill='#313131')
 
     fig = __get_equity_curve(strategy, 860, 285)
     copy.paste(fig, (0, 440),mask=fig)
