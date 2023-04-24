@@ -35,7 +35,7 @@ def __get_profile(url: str) -> Image:
     final_img_arr = np.dstack((img_arr, lum_img_arr))
     return Image.fromarray(final_img_arr).resize((80,80))
 
-def __get_equity_curve(strategy) -> Image:
+def __get_equity_curve(strategy, width=1200, height=400) -> Image:
     # Add line
     fig = go.Figure()
    
@@ -50,8 +50,8 @@ def __get_equity_curve(strategy) -> Image:
 
     fig.update_layout(
         autosize=False,
-        width=1200,
-        height=400,
+        width=width,
+        height=height,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         margin=dict(l=0, r=0, t=0, b=0),
@@ -62,7 +62,7 @@ def __get_equity_curve(strategy) -> Image:
     fig_bytes = fig.to_image(format="png")
     return Image.open(BytesIO(fig_bytes))
 
-def __create_landscape(template, strategy, profile, fig) -> Image:
+def __create_landscape(template, strategy, profile) -> Image:
     # Create a copy of the template to add elements
     copy = template.copy()
 
@@ -78,15 +78,15 @@ def __create_landscape(template, strategy, profile, fig) -> Image:
     category = category.upper()
 
     width = name_font.getlength(name)
-    if width < 600:
+    if width < 530:
         I1.text((105,120), name, font=name_font, fill='#313131')
     else:
         parts = name.split(' ')
         for i in reversed(range(len(parts))):
-            if name_font.getlength(' '.join(parts[:i])) <= 600:
+            if name_font.getlength(' '.join(parts[:i])) <= 530:
                 break
-        I1.text((105,120), ' '.join(parts[:i-1]), font=name_font, fill='#313131')
-        I1.text((105,155), ' '.join(parts[i-1:]), font=name_font, fill='#313131')
+        I1.text((105,120), ' '.join(parts[:i]), font=name_font, fill='#313131')
+        I1.text((105,155), ' '.join(parts[i:]), font=name_font, fill='#313131')
         
     width = author_font.getlength(author_name)
     if width < 250:
@@ -106,16 +106,17 @@ def __create_landscape(template, strategy, profile, fig) -> Image:
 
     I1.text((105,200), category, font=category_font,
         fill=colors_by_category.get(category, '#313131'))
-        
+
+    fig = __get_equity_curve(strategy)
     copy.paste(fig, (0, 210),mask=fig)
     return copy
 
-def __create_square(template, strategy, profile, fig) -> Image:
+def __create_square(template, strategy, profile) -> Image:
     # Create a copy of the template to add elements
     copy = template.copy()
 
     # Add profile picture
-    copy.paste(profile, (681, 280),mask=profile)
+    copy.paste(profile, (550, 225),mask=profile)
 
     # Add texts
     I1 = ImageDraw.Draw(copy)
@@ -126,36 +127,37 @@ def __create_square(template, strategy, profile, fig) -> Image:
     category = category.upper()
 
     width = name_font.getlength(name)
-    if width < 600:
-        I1.text((105,280), name, font=name_font, fill='#313131')
+    if width < 450:
+        I1.text((42,220), name, font=name_font, fill='#313131')
     else:
         parts = name.split(' ')
         for i in reversed(range(len(parts))):
-            if name_font.getlength(' '.join(parts[:i])) <= 600:
+            if name_font.getlength(' '.join(parts[:i])) <= 450:
                 break
-        I1.text((105,280), ' '.join(parts[:i-1]), font=name_font, fill='#313131')
-        I1.text((105,315), ' '.join(parts[i-1:]), font=name_font, fill='#313131')
+        I1.text((42,220), ' '.join(parts[:i]), font=name_font, fill='#313131')
+        I1.text((42,255), ' '.join(parts[i:]), font=name_font, fill='#313131')
         
     width = author_font.getlength(author_name)
-    if width < 250:
-        I1.text((775,317), author_name, font=author_font, fill='#313131')
+    if width < 200:
+        I1.text((640,265), author_name, font=author_font, fill='#313131')
     else:
         parts = author_name.split(' ')
         for i in reversed(range(len(parts))):
-            if author_font.getlength(' '.join(parts[:i])) <= 250:
+            if author_font.getlength(' '.join(parts[:i])) <= 200:
                 break
         if i == 0:
-            while author_font.getlength(author_name) > 250:
+            while author_font.getlength(author_name) > 200:
                 author_name = author_name[:-1]
-            I1.text((775,317), f'{author_name}...', font=author_font, fill='#313131')
+            I1.text((640,265), f'{author_name}...', font=author_font, fill='#313131')
         else:
-            I1.text((775,317), ' '.join(parts[:i]), font=author_font, fill='#313131')
-            I1.text((775,342), ' '.join(parts[i:]), font=author_font, fill='#313131')
+            I1.text((640,265), ' '.join(parts[:i]), font=author_font, fill='#313131')
+            I1.text((640,290), ' '.join(parts[i:]), font=author_font, fill='#313131')
 
-    I1.text((105,360), category, font=category_font,
+    I1.text((42,300), category, font=category_font,
         fill=colors_by_category.get(category, '#313131'))
 
-    copy.paste(fig, (0, 570),mask=fig)
+    fig = __get_equity_curve(strategy, 860, 285)
+    copy.paste(fig, (0, 440),mask=fig)
     return copy
 
 colors_by_category = {
@@ -174,7 +176,7 @@ if __name__ == '__main__':
     destination_folder.mkdir(parents=True, exist_ok=True)
 
     template_landscape = Image.open('template_landscape.png')
-    template_squared = Image.open('template_squared.png')
+    template_square = Image.open('template_square.png')
     name_font = ImageFont.FreeTypeFont('Inter font/static/Inter-SemiBold.ttf', 35)
     category_font = ImageFont.FreeTypeFont('Inter font/static/Inter-Regular.ttf', 20)
     author_font = ImageFont.FreeTypeFont('Inter font/static/Inter-Regular.ttf', 24)
@@ -189,10 +191,9 @@ if __name__ == '__main__':
             continue
                     
         profile_picture = __get_profile(strategy['authorProfile'])
-        equity_curve = __get_equity_curve(strategy)
 
-        landscape = __create_landscape(template_landscape, strategy, profile_picture, equity_curve)
+        landscape = __create_landscape(template_landscape, strategy, profile_picture)
         landscape.save(f"thumbnails/{id}.png")
 
-        square = __create_square(template_squared, strategy, profile_picture, equity_curve)
+        square = __create_square(template_square, strategy, profile_picture)
         square.save(f"thumbnails/{id}_square.png")
