@@ -20,9 +20,13 @@ def __get_json_content(url: str) -> List:
 
 def __get_profile(url: str) -> Image:
     if 'icon' in url:
-        return Image.open('default_photo.png').resize((80,80))
+        return None
     
-    profile = Image.open(get(url.replace("\\",""), stream=True).raw)
+    image = get(url.replace("\\",""), stream=True)
+    if image.status_code != 200:
+        return None
+
+    profile = Image.open(image.raw)
 
     h,w = profile.size
     
@@ -166,7 +170,8 @@ if __name__ == '__main__':
     name_font = ImageFont.FreeTypeFont('Inter font/static/Inter-SemiBold.ttf', 35)
     category_font = ImageFont.FreeTypeFont('Inter font/static/Inter-Regular.ttf', 20)
     author_font = ImageFont.FreeTypeFont('Inter font/static/Inter-Regular.ttf', 24)
-
+    default_photo = Image.open('default_photo.png').resize((80,80))
+    profile_errors = set()
     content = __get_json_content('https://www.quantconnect.com/api/v2/sharing/strategies/list/')
     strategies = content.get('strategies', [])
 
@@ -175,11 +180,17 @@ if __name__ == '__main__':
         if not id:
             print(f'No project Id for {strategy}')
             continue
-                    
+
         profile_picture = __get_profile(strategy['authorProfile'])
+        if not profile_picture:
+            profile_picture = default_photo
+            profile_errors.add(strategy.get("authorName"))
 
         landscape = __create_landscape(template_landscape, strategy, profile_picture)
         landscape.save(f"thumbnails/{id}.png")
 
         square = __create_square(template_square, strategy, profile_picture)
         square.save(f"thumbnails/{id}_square.png")
+
+    if profile_errors:
+        print("Cannot download profile images of: " + ','.join(profile_errors))
