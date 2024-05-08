@@ -26,7 +26,7 @@ def __get_profile(url: str) -> Image:
     if image.status_code != 200:
         return None
 
-    profile = Image.open(image.raw)
+    profile = Image.open(image.raw).convert("RGB")
 
     h,w = profile.size
     
