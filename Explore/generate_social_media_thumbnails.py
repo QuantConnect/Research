@@ -19,7 +19,7 @@ def __get_json_content(url: str) -> List:
         exit(f'Invalid content for {url}')
 
 def __get_profile(url: str) -> Image:
-    if 'icon' in url:
+    if not url or 'icon' in url:
         return None
     
     image = get(url.replace("\\",""), stream=True)
